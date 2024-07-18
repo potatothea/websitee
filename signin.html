@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--clr-background);
+            padding: 20px 0; /* Add padding to create space at the top and bottom */
+        }
+    
+    .navbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3d1e08;
+    padding: 0 30px;
+    }
+    
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    }
+    
+    .navbar .logo img {
+    width: 50px; /* Adjust the size as needed */
+    height: auto;
+    margin-right: 10px;
+    }
+    
+    .navbar .logo h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 38px;
+    }
+    
+    .navbar .navList {
+    display: flex;
+    align-items: center;
+    margin: 0 30px;
+    }
+    
+    .navbar .navList ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    }
+    
+    .navbar .navList ul li {
+    display: flex;
+    align-items: center;
+    }
+    
+    .navbar .navList ul li a {
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 0 5px;
+    font-size: 18px;
+    color: #fff;
+    transition: color 0.3s ease-in-out;
+    }
+    
+    .navbar .navList ul li a:hover {
+    color: rgb(238, 214, 169);
+    }
+    
+    .navbar .navList ul li .fas,
+    .navbar .navList ul li .fa-user {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+    }
+    
+    .navbar .navList ul li .fas.fa-shopping-cart {
+    margin-left: 30px;
+    }
+    
+    .navbar .navList ul li .fas:hover,
+    .navbar .navList ul li .fa-user:hover {
+    color: rgb(238, 214, 169);
+    }
+    
+    .search-container, .cart-container {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    }
+    
+    .search-container {
+    right: 50px;
+    top: 80px;
+    }
+    
+    .search-container input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    }
+    
+    .cart-container {
+    right: 0;
+    top: 80px;
+    }
+    
+    .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    }
+    
+    .cart-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+    }
+    
+    .cart-item img:hover {
+    transform: scale(1.1);
+    }
+    
+    .cart-item .item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .cart-item .item-info span {
+    margin: 2px 0;
+    }
+    
+    .cart-item .item-info span:nth-child(2) {
+    color: rgb(181, 128, 49);
+    }
+    
+    .cart-item .remove-item {
+    cursor: pointer;
+    color: rgb(163, 99, 60);
+    margin-left: 20px;
+    transition: transform 0.3s ease-in-out;
+    }
+    
+    .cart-item .remove-item:hover {
+    transform: scale(1.2);
+    }
+    
+    .checkout-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3d1e08;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    }
+    
+    .checkout-button:hover {
+    background-color: rgb(238, 214, 169);
+    color: #3d1e08;
+    }
+    
+    #search-toggle:checked ~ .search-container,
+    #cart-toggle:checked ~ .cart-container {
+    display: block;
+    }
+    
+    #search-toggle,
+    #cart-toggle {
+    display: none;
+    }
+        :root {
+            --clr-primary: #6F4E37;
+            --clr-secondary: #D2B48C;
+            --clr-background: #ffffff;
+            --clr-text: #4B3832;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 0; 
+        }
+
+        form {
+            background: var(--clr-primary);
+            padding: 60px 80px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form h2 {
+            color: var(--clr-background);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 1.25em;
+            letter-spacing: 0.1em;
+            margin-bottom: 50px;
+        }
+
+        .inputBox {
+            position: relative;
+            width: 300px;
+            margin-bottom: 40px;
+        }
+
+        .inputBox input {
+            width: 100%;
+            padding: 10px 30px 10px 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--clr-secondary);
+            outline: none;
+            color: var(--clr-background);
+            font-size: 1em;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .inputBox label {
+            position: absolute;
+            left: 10px;
+            padding: 10px 0;
+            pointer-events: none;
+            color: var(--clr-secondary);
+            text-transform: uppercase;
+        }
+
+        .inputBox label span {
+            display: inline-block;
+            letter-spacing: 0.05em;
+            transition: 0.2s ease-in-out;
+        }
+
+        .inputBox input:focus ~ label span,
+        .inputBox input:valid ~ label span {
+            color: var(--clr-background);
+            letter-spacing: 0.15em;
+            transform: translateY(-25px);
+        }
+
+        .inputBox input:focus,
+        .inputBox input:valid {
+            border-bottom: 2px solid var(--clr-background);
+            box-shadow: 0 0 10px var(--clr-primary), 0 0 20px var(--clr-primary), 0 0 30px var(--clr-primary);
+        }
+
+        .inputBox i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--clr-secondary);
+            font-size: 1.2em;
+        }
+
+        .inputBox input[type="submit"] {
+            background: var(--clr-background);
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            color: var(--clr-primary);
+            font-size: 1.15em;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .inputBox input[type="submit"]:hover {
+            background: var(--clr-secondary);
+            color: var(--clr-background);
+        }
+
+        form p {
+            color: var(--clr-background);
+        }
+
+        form p a {
+            color: var(--clr-secondary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        form p a:hover {
+            color: var(--clr-background);
+            text-decoration: underline;
+        }
+
+        footer {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #3d1e08;
+            text-align: center;
+            color: #fff;
+        }
+
+        .footer-content img {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+        <img src="mylogo.png" alt="Logo Image">
+        <h2>Code Brew</h2>
+        </div>
+        
+        <div class="navList">
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="menu.html">Our Menu</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li>
+        <a href="blogs.html">Blogs</a>
+        <label for="search-toggle" class="fas fa-search"></label>
+        <label for="cart-toggle" class="fas fa-shopping-cart"></label>
+        <a href="signin.html"><i class="fas fa-user"></i></a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        
+        <input type="checkbox" id="search-toggle">
+        <input type="checkbox" id="cart-toggle">
+        
+        <div class="search-container">
+        <input type="text" placeholder="Search...">
+        </div>
+        
+        <div class="cart-container">
+        <div class="cart-item">
+        <img src="https://www.lotusbiscoff.com/sites/default/files/2023-01/BISCOFF%20AFFOGATO-340%201x1.jpg" alt="Product 1">
+        <div class="item-info">
+        <span>Cart Item 01</span>
+        <span>₱78.00</span>
+        </div>
+        <span class="remove-item">x</span>
+        </div>
+        <div class="cart-item">
+        <img src="https://th.bing.com/th/id/OIP.3FOaqXYHaFLh7BJLDh_bUQAAAA?rs=1&pid=ImgDetMain" alt="Product 2">
+        <div class="item-info">
+        <span>Cart Item 02</span>
+        <span>₱99.00</span>
+        </div>
+        <span class="remove-item">x</span>
+        </div>
+        <div class="cart-item">
+        <img src="https://th.bing.com/th/id/OIP.KObWHbsg0IoDn2GNIflprQHaHa?w=600&h=600&rs=1&pid=ImgDetMain" alt="Product 3">
+        <div class="item-info">
+        <span>Cart Item 03</span>
+        <span>₱150.00</span>
+        </div>
+        <span class="remove-item">x</span>
+        </div>
+        <div class="cart-item">
+        <img src="https://th.bing.com/th/id/OIP.8BCVAJne5iwZCyapJ3usmQHaKv?rs=1&pid=ImgDetMain" alt="Product 4">
+        <div class="item-info">
+        <span>Cart Item 04</span>
+        <span>₱130.00</span>
+        </div>
+        <span class="remove-item">x</span>
+        </div>
+        </div>
+        
+        </body>
+        </html>
+    <div class="content">
+        <form action="https://formsubmit.co/sadiconaltheazuleika@gmail.com" method="POST">
+            <h2>New Account</h2>
+            <div class="inputBox">
+                <input type="email" name="email" required>
+                <label>Email</label>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required>
+                <label>Create &nbsp Password</label>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="confirm_password" required>
+                <label>Confirm &nbsp Password</label>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Create">
+            </div>
+            <p>Already have an Account? <a href="#">Login</a></p>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="mylogo.png" alt="Logo">
+            <p>&copy; 2023 Code Brew. All Rights Reserved.</p>
+            <p>Created by Althea Zuleika Sadicon</p>
+            <p>Email: <a href="mailto:sadiconaltheazuleika@gmail.com">sadiconaltheazuleika@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('label').forEach(label => {
+            label.innerHTML = label.innerText.split('').map((letter, i) =>
+                `<span style="transition-delay: ${i * 50}ms">${letter}</span>`
+            ).join('');
+        });
+    </script>
+</body>
+</html>
